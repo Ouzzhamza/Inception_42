@@ -4,9 +4,13 @@ all: run
 
 run :
 	@echo "$(TAB)$(GREEN)building containers$(RESET)"
-	@sudo mkdir -p /home/houazzan/data/wordpress
+	@sudo mkdir -p /home/ouzhamza/data/wordpress
+	@sudo mkdir -p /home/ouzhamza/data/mariadb
 	@docker-compose -f $(COMPOSE_FILE) up -d --build > /dev/null
 
+down :
+	@echo "$(TAB)$(RED)Stopping the containers $(RESET)"
+	@docker-compose -f $(COMPOSE_FILE) down
 list:	
 	@echo "$(TAB)$(GREEN)Listing all containers ... $(RESET)"
 	 docker ps -a
@@ -16,8 +20,9 @@ list_volumes:
 	docker volume ls
 
 clean:
-	@echo "$(TAB)$(RED)Stopping and deleting all $(RESET)"
-	@sudo rm -rf /home/houazzan/data/wordpress
+	@echo "$(TAB)$(RED)Stopping the containers removing every thing $(RESET)"
+	@sudo rm -rf /home/ouzhamza/data/wordpress
+	@sudo rm -rf /home/ouzhamza/data/mariadb
 	@docker-compose -f $(COMPOSE_FILE) down -v --rmi local
     
 .SILENT :

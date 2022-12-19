@@ -88,3 +88,16 @@ If the request does not match the criteria specified in the fastcgi_pass directi
 
 
 
+
+
+PHP-FPM is a daemon process manager that is used to handle and manage the execution of PHP scripts on a web server.
+
+
+
+In a WordPress installation, the wp-config-sample.php file is a sample configuration file that contains all the necessary settings for a WordPress site to function. It includes information such as the database name and login credentials, security keys and salts, and other options for customizing your WordPress site.
+
+The wp-config.php file is the actual configuration file used by WordPress to connect to the database and configure various settings for your site. It is based on the wp-config-sample.php file, but with the specific settings for your site added in.
+
+To create a wp-config.php file for your WordPress site, you can make a copy of the wp-config-sample.php file and edit it with the appropriate settings for your site. Once you have completed the necessary edits, you should save the file as wp-config.php and upload it to your WordPress installation's root directory.
+
+It is important to note that the wp-config-sample.php file should not be uploaded to your WordPress site, as it is just a sample file and does not contain the specific settings for your site. Only the wp-config.php file should be used, as it contains the actual configuration settings that are needed for your site to function properl

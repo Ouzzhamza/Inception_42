@@ -17,6 +17,8 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
     env_file:
       - .env
     restart: unless-stopped
@@ -32,10 +34,25 @@ services:
       - wordpress_data:/var/www/html
     restart: unless-stopped
 
+    #bonus 
+
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
 volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ouzhamza/data/mariadb
+      o: bind
   wordpress_data:
-   driver: local
-   driver_opts:
-    type: none
-    device: /home/houazzan/data/wordpress
-    o: bind
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ouzhamza/data/wordpress
+      o: bind
