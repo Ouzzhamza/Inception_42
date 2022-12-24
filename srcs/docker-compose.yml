@@ -4,44 +4,73 @@ version : "3"
 services:
 
   nginx:
-    depends_on:
-      - wordpress
     container_name: nginx
     build: ./requirements/nginx
+    image: nginx
+    depends_on:
+      - mariadb
+      - adminer
+      # - redis
     ports:
       - 443:443
+      - 8080:8080
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress_data:/var/www/wordpress
+      - adminer_data:/var/www/adminer
     restart: unless-stopped
+    networks:
+      - inception_network
 
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
+    image: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
     env_file:
       - .env
     restart: unless-stopped
+    networks:
+      - inception_network
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
+    image: wordpress
+    volumes: 
+      - wordpress_data:/var/www/wordpress
     depends_on:
       - mariadb
+      - nginx
     env_file:
       - .env
-    volumes: 
-      - wordpress_data:/var/www/html
     restart: unless-stopped
+    networks:
+      - inception_network
 
     #bonus 
 
   adminer:
     container_name: adminer
     build: ./requirements/bonus/adminer
+    image: adminer
+    volumes:
+      - adminer_data:/var/www/adminer
     depends_on:
       - mariadb
+    # expose:
+    #   - 7000
     restart: unless-stopped
+    networks:
+      - inception_network
+    
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    image: redis
+    restart: unless-stopped
+    networks:
+      - inception_network
 
 volumes:
   mariadb_data:
@@ -56,3 +85,13 @@ volumes:
       type: none
       device: /home/ouzhamza/data/wordpress
       o: bind
+  adminer_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: home/ouzhamza/data/adminer
+
+networks:
+  inception_network:
+    driver: bridge

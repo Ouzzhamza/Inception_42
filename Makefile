@@ -6,6 +6,7 @@ run :
 	@echo "$(TAB)$(GREEN)building containers$(RESET)"
 	@sudo mkdir -p /home/ouzhamza/data/wordpress
 	@sudo mkdir -p /home/ouzhamza/data/mariadb
+	@sudo mkdir -p /home/ouzhamza/data/adminer
 	@docker-compose -f $(COMPOSE_FILE) up -d --build > /dev/null
 
 down :
@@ -23,6 +24,7 @@ clean:
 	@echo "$(TAB)$(RED)Stopping the containers removing every thing $(RESET)"
 	@sudo rm -rf /home/ouzhamza/data/wordpress
 	@sudo rm -rf /home/ouzhamza/data/mariadb
+	@sudo rm -rf /home/ouzhamza/data/adminer
 	@docker-compose -f $(COMPOSE_FILE) down -v --rmi local
     
 .SILENT :
