@@ -1,16 +1,12 @@
 #!/bin/bash
 
 
-# curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
-# chmod +x wp-cli.phar 
-# mv wp-cli.phar /usr/local/bin/wp
-
-if [ ! -f /var/www/html/wp-config.php ]; then
+if [ ! -f /var/www/wordpress/wp-config.php ]; then
 # download wordpress
 wp core download --path=/var/www/wordpress --allow-root
 
 # configure wordpress database and redis
-wp core config --path=/var/www/wordpress --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_USER_PASSWORD --dbhost=$SQL_HOST --skip-check --allow-root --extra-php <<PHP
+wp core config --path=/var/www/wordpress --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_USER_PASSWORD --dbhost=$SQL_HOST --skip-check --allow-root  --extra-php <<PHP
 define( 'WP_REDIS_HOST', 'redis' );
 define( 'WP_REDIS_PORT', 6379 );
 define( 'WP_REDIS_TIMEOUT', 1 );
@@ -30,7 +26,7 @@ wp theme install zeever --path=/var/www/wordpress  --activate --allow-root
 # redis configuration
 wp plugin install redis-cache --path=/var/www/wordpress  --activate --allow-root
 wp redis update-dropin --path=/var/www/wordpress  --allow-root 
-wp redis enable
+wp redis enable --allow-root
 
 fi
 

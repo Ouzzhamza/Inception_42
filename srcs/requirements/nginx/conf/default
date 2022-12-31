@@ -11,7 +11,7 @@ server {
 	
 	#files to display and directory to find
 	root /var/www/wordpress;
-	index index.php index.nginx-debian.html;
+	index index.php index.html;
 	
 	location / {
 		try_files $uri $uri/ /index.php$is_args$args;
@@ -34,7 +34,6 @@ server {
     listen 8080 ssl;
 	listen [::]:8080 ssl;
 
-    # server_name  localhost; 
 
     ssl_protocols  TLSv1.2;
     ssl_certificate /etc/nginx/ssl/houazzan.crt;
