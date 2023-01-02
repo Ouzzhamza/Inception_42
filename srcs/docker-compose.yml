@@ -12,8 +12,8 @@ services:
       - adminer
       - redis
     ports:
-      - 443:443
-      - 8080:8080
+      - "443:443"
+      - "8080:8080"
     volumes:
       - wordpress_data:/var/www/wordpress
       - adminer_data:/var/www/adminer
@@ -92,7 +92,7 @@ services:
     networks:
       - inception_network
     ports:
-      - 8086:8086
+      - "8086:8086"
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:ro"
@@ -100,6 +100,14 @@ services:
       - "/var/lib/docker/:/var/lib/docker:ro"
       - "/dev/disk/:/dev/disk:ro"
 
+  static-website:
+    container_name: static-website
+    build: ./requirements/bonus/static
+    image: static-website
+    networks:
+      - inception_network
+    ports:
+      - "80:80"
 volumes:
   mariadb_data:
     driver: local
