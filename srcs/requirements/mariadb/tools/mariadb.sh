@@ -8,7 +8,7 @@ if [ ! -d "/var/lib/mysql/$SQL_DATABASE" ]
 then
 	# create wordpress database
 	echo "CREATE DATABASE $SQL_DATABASE; GRANT ALL ON $SQL_DATABASE.* TO '$SQL_USER'@'%' IDENTIFIED BY '$SQL_USER_PASSWORD'; FLUSH PRIVILEGES;" | mysql -u root
-	Set the password for the root user
+	# the password for the root user
 	echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$SQL_ROOT_PASSWORD');" | mysql -u root
 fi
 

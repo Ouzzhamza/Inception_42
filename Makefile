@@ -25,7 +25,7 @@ clean:
 	@sudo rm -rf /home/ouzhamza/data/wordpress
 	@sudo rm -rf /home/ouzhamza/data/mariadb
 	@sudo rm -rf /home/ouzhamza/data/adminer
-	@docker-compose -f $(COMPOSE_FILE) down -v --rmi local
+	@docker-compose -f $(COMPOSE_FILE) down
     
 .SILENT :
 .PHONY : all run list list_volumes clean
