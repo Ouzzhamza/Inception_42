@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get upgrade && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx
 
 COPY ./website /var/www/html
 

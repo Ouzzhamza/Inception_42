@@ -66,6 +66,8 @@ services:
     build: ./requirements/bonus/redis
     image: redis
     restart: unless-stopped
+    depends_on:
+      - wordpress
     networks:
       - inception_network
     
@@ -114,14 +116,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ouzhamza/data/mariadb
+      device: /home/houazzan/data/mariadb
       o: bind
   wordpress_data:
     name: wordpress_data
     driver: local
     driver_opts:
       type: none
-      device: /home/ouzhamza/data/wordpress
+      device: /home/houazzan/data/wordpress
       o: bind
   adminer_data:
     name: adminer_data
@@ -129,7 +131,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/ouzhamza/data/adminer
+      device: /home/houazzan/data/adminer
 
 
 networks:
