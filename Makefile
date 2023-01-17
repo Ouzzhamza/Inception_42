@@ -13,19 +13,22 @@ down :
 	@echo "$(TAB)$(RED)Stopping the containers $(RESET)"
 	@docker-compose -f $(COMPOSE_FILE) down
 list:	
-	@echo "$(TAB)$(GREEN)Listing all containers ... $(RESET)"
+	@echo "$(TAB)$(GREEN)Listing all containers $(RESET)"
 	 docker ps -a
 
 list_volumes:
-	@echo "$(TAB)$(GREEN)Listing volumes ... $(RESET)"
+	@echo "$(TAB)$(GREEN)Listing volumes $(RESET)"
 	docker volume ls
-
+list_network:
+	@echo "$(TAB)$(GREEN) Listing networks $(RESET)"
+	docker network ls
 clean:
 	@echo "$(TAB)$(RED)Stopping the containers removing every thing $(RESET)"
 	@sudo rm -rf /home/houazzan/data/wordpress
 	@sudo rm -rf /home/houazzan/data/mariadb
 	@sudo rm -rf /home/houazzan/data/adminer
 	@docker-compose -f $(COMPOSE_FILE) down -v
+	@docker rmi $$(docker images -qa) -f
     
 .SILENT :
 .PHONY : all run list list_volumes clean
