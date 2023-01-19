@@ -23,40 +23,37 @@ server {
         fastcgi_pass wordpress:9000;
         fastcgi_index index.php;
         include fastcgi_params;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
+	fastcgi_param PATH_INFO $fastcgi_path_info;
+	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
 }
 
 
 server {
-    listen 8080 ssl;
+    	listen 8080 ssl;
 	listen [::]:8080 ssl;
 
 
-    ssl_protocols  TLSv1.2;
-    ssl_certificate /etc/nginx/ssl/houazzan.crt;
+    	ssl_protocols  TLSv1.2;
+    	ssl_certificate /etc/nginx/ssl/houazzan.crt;
 	ssl_certificate_key /etc/nginx/ssl/houazzan.key;
 
-    root /var/www/adminer;
-    index index.php index.html index.htm adminer.php;
+    	root /var/www/adminer;
+    	index index.php index.html adminer.php;
 
-    access_log /var/log/nginx/wordpress_access.log;
-    error_log /var/log/nginx/wordpress_error.log;
+    	access_log /var/log/nginx/wordpress_access.log;
+    	error_log /var/log/nginx/wordpress_error.log;
 
-    client_max_body_size 64M;
+    	client_max_body_size 64M;
 
 	location / {
         try_files $uri $uri/ /index.php?$args;
     }
 
-    location ~ \.php$ {
+    	location ~ \.php$ {
         try_files $uri =404;
         include /etc/nginx/fastcgi_params;
-        fastcgi_read_timeout 3600s;
-        fastcgi_buffer_size 128k;
-        fastcgi_buffers 4 128k;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_pass adminer:7000;
         fastcgi_index index.php;

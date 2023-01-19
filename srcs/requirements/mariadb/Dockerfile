@@ -1,9 +1,6 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get install -y mariadb-server mariadb-client  systemd
-
-RUN rm -rf /var/run/mysqld && mkdir /var/run/mysqld && chown mysql /var/run/mysqld/
-
+RUN apt-get update && apt-get install -y mariadb-server mariadb-client
 
 EXPOSE 3306
 
