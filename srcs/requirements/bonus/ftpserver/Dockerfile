@@ -2,7 +2,6 @@ FROM	debian:buster
 
 
 RUN apt-get  update \
-    && apt-get upgrade -y \
     && apt-get install vsftpd  -y 
 
 COPY ./tools/vsftpd.sh /

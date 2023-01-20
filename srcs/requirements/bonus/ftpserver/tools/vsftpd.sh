@@ -5,8 +5,9 @@
 useradd -m $FTP_USER
 
 # setting a password to the user
- echo "$FTP_USER:$FTP_PASS" | chpasswd
+echo "$FTP_USER:$FTP_PASS" | chpasswd
 
+#creating a 
 mkdir -p /home/$FTP_USER/ftp
 
 chown nobody:nogroup /home/$FTP_USER/ftp

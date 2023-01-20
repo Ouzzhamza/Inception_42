@@ -2,7 +2,6 @@ FROM debian:buster
 
 # Install dependencies
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y \
     php-cgi php-common php-fpm php-pear php-mbstring \
 	php-zip php-net-socket php-gd php-xml-util \
