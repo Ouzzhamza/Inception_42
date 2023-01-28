@@ -16,7 +16,7 @@ chmod a-w /home/$FTP_USER/ftp
 mkdir /home/$FTP_USER/ftp/files
 chown $FTP_USER:$FTP_USER /home/$FTP_USER/ftp/files
 
-echo "alexander" >> /etc/vsftpd.userlist
+echo "hamza" >> /etc/vsftpd.userlist
 
 
 sed -i "s/anonymous_enable=YES/anonymous_enable=NO/g" /etc/vsftpd.conf
@@ -28,6 +28,6 @@ echo "pasv_max_port=40005" >> /etc/vsftpd.conf
 echo "userlist_enable=YES" >> /etc/vsftpd.conf
 echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
 echo "userlist_deny=NO" >> /etc/vsftpd.conf
-echo "secure_chroot_dir=/home/alexander/ftp/files" >> /etc/vsftpd.conf
+echo "secure_chroot_dir=/home/hamza/ftp/files" >> /etc/vsftpd.conf
 
 exec "$@"

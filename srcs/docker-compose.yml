@@ -82,7 +82,7 @@ services:
     env_file:
     - .env
     volumes:
-        - wordpress_data:/home/alexander/ftp/files
+        - wordpress_data:/home/hamza/ftp/files
     restart: unless-stopped
     networks:
         - inception_network
